@@ -2,11 +2,11 @@ package com.utad.examenfinalpmdm.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.utad.examenfinalpmdm.databinding.ActivityHomeBinding
 import android.widget.Toast
-
 
 
 class HomeActivity : AppCompatActivity() {
@@ -20,7 +20,8 @@ class HomeActivity : AppCompatActivity() {
     private val adapter = HomeAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityHomeBinding.inflate(layoutInflater) // Inflar el layout y asignarlo a _binding
+        _binding =
+            ActivityHomeBinding.inflate(layoutInflater) // Inflar el layout y asignarlo a _binding
         setContentView(binding.root)
 
         setRecyclerView()
@@ -50,9 +51,9 @@ class HomeActivity : AppCompatActivity() {
                 adapter.submitList(uiState.schoolList)
             }
             if (uiState.isLoading) {
-                //binding.PbLoad.visibility = View.VISIBLE
+                binding.pbLoading.visibility = View.VISIBLE
             } else {
-                //binding.PbLoad.visibility = View.INVISIBLE
+                binding.pbLoading.visibility = View.INVISIBLE
             }
             if (uiState.isError) {
                 Toast.makeText(this, "Ha ocurrido un error.", Toast.LENGTH_SHORT).show()

@@ -32,12 +32,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.saveUserName(this, name)
             goToHome()
         } else {
-            Toast.makeText(this, "Introduce un nombre de un departamento", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Introduce un nombre de un departamento", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
     // Navego a la siguiente activity
-    fun goToHome(){
+    fun goToHome() {
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()

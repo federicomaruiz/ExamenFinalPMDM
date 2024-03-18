@@ -19,10 +19,10 @@ class HomeViewModel : ViewModel() {
     val uiState: LiveData<HomeUIState> get() = _uiState
 
     // Pongo a la escucha de cuando cambie la informacion
-    fun getUserName(context: Context){
+    fun getUserName(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
-            DataStoreRepository.getSampleData(context).collect{ userName ->
-                if(userName!= "No hay datos"){
+            DataStoreRepository.getSampleData(context).collect { userName ->
+                if (userName != "No hay datos") {
                     _userName.postValue(userName)
                 }
             }
@@ -30,10 +30,10 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getHomeWork(userName: String) {
-        _uiState.postValue(HomeUIState(isLoading =  true))
+        _uiState.postValue(HomeUIState(isLoading = true))
         viewModelScope.launch(Dispatchers.IO) {
             val response = TaskApi.service.getHomeWork("Federico", userName)
-            if(response.isSuccessful){
+            if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody != null) {
                     _uiState.postValue(HomeUIState(schoolList = responseBody))
